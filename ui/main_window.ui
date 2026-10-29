@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>FitTrack</string>
+  </property>
+  <property name="styleSheet">
+   <string>QMainWindow, QWidget#centralwidget, QScrollArea#pageScroll, QWidget#pageContent {
+    background-color: #232323; color: #f5f5f5;
+}
+QWidget { font-family: &quot;Arial&quot;; font-size: 15px; color: #f5f5f5; }
+QLabel { background: transparent; border: none; }
+QLabel#titleLabel { font-size: 34px; font-weight: 700; }
+QLabel#subtitleLabel { color: #b0b0b0; font-size: 18px; }
+QFrame#searchFrame { background: #101010; border: 1px solid #343434; border-radius: 16px; }
+QLineEdit#searchEdit { background: transparent; border: none; padding: 0; font-size: 19px; selection-background-color: #606060; }
+QLineEdit#searchEdit:focus { border: none; }
+QToolButton[categoryButton=&quot;true&quot;] { background: #101010; border: 1px solid #303030; border-radius: 16px; padding: 12px; font-size: 18px; }
+QToolButton[categoryButton=&quot;true&quot;]:hover { background: #191919; border-color: #626262; }
+QToolButton[categoryButton=&quot;true&quot;]:checked { background: #333333; border: 2px solid #e6e6e6; }
+QToolButton[categoryButton=&quot;true&quot;]:focus { border-color: #e6e6e6; }
+QFrame#separator { background: #383838; border: none; }
+QLabel#sectionTitleLabel { font-size: 24px; font-weight: 700; }
+QLabel#resultCountLabel { color: #a0a0a0; font-size: 13px; }
+QPushButton#allExercisesButton { background: transparent; border: 1px solid #515151; border-radius: 10px; padding: 9px 14px; color: #dedede; font-size: 14px; }
+QPushButton#allExercisesButton:hover { background: #343434; border-color: #999999; }
+QFrame[thumbnail=&quot;true&quot;] { background: #161616; border: 1px solid #3b3b3b; border-radius: 17px; }
+QLabel[photoCaption=&quot;true&quot;] { color: #898989; font-size: 11px; }
+QLabel[exerciseTitle=&quot;true&quot;] { font-size: 22px; font-weight: 600; }
+QLabel[exerciseMeta=&quot;true&quot;] { color: #b0b0b0; font-size: 16px; }
+QLabel#emptyStateLabel { color: #b0b0b0; font-size: 17px; padding: 24px; background: #1b1b1b; border-radius: 14px; }
+QLabel#footerLabel { color: #8d8d8d; font-size: 13px; }
+QScrollArea { border: none; }
+QScrollBar:vertical { background: #232323; width: 8px; margin: 4px 1px; }
+QScrollBar::handle:vertical { background: #555555; border-radius: 3px; }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QScrollArea" name="pageScroll">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-10</y>
+      <width>1000</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="pageContent">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1000</width>
+       <height>840</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="titleLabel">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>30</y>
+        <width>924</width>
+        <height>38</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FitTrack</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subtitleLabel">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>75</y>
+        <width>924</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Упражнения и комплексы для твоих целей</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QFrame" name="searchFrame">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>118</y>
+        <width>924</width>
+        <height>62</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="searchIconLabel">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>17</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../assets/resources.qrc">:/icons/search.svg</pixmap>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="searchEdit">
+       <property name="geometry">
+        <rect>
+         <x>63</x>
+         <y>19</y>
+         <width>842</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="accessibleName">
+        <string>Поиск упражнений</string>
+       </property>
+       <property name="placeholderText">
+        <string>Поиск упражнений…</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QToolButton" name="backButton">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>200</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Спина</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/back.svg</normaloff>:/icons/back.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Спина</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="chestButton">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>198</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Грудь</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/chest.svg</normaloff>:/icons/chest.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Грудь</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="legsButton">
+      <property name="geometry">
+       <rect>
+        <x>662</x>
+        <y>198</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Ноги</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/legs.svg</normaloff>:/icons/legs.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Ноги</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="rehabButton">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>310</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Реабилитация</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/rehab.svg</normaloff>:/icons/rehab.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Реабилитация</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="stretchButton">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>304</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Растяжка</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/stretch.svg</normaloff>:/icons/stretch.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Растяжка</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="beginnerButton">
+      <property name="geometry">
+       <rect>
+        <x>662</x>
+        <y>304</y>
+        <width>300</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Для начинающих</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../assets/resources.qrc">
+        <normaloff>:/icons/beginner.svg</normaloff>:/icons/beginner.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+      </property>
+      <property name="categoryButton" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="category" stdset="0">
+       <string>Для начинающих</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="separator">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>422</y>
+        <width>924</width>
+        <height>1</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="sectionTitleLabel">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>445</y>
+        <width>744</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Популярные упражнения</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resultCountLabel">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>476</y>
+        <width>744</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Примеры упражнений</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="allExercisesButton">
+      <property name="geometry">
+       <rect>
+        <x>798</x>
+        <y>447</y>
+        <width>164</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>Все упражнения</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="pulldownCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>507</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Тяга верхнего блока</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Спина</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Тяга верхнего блока Спина Тренажёр</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>true</bool>
+      </property>
+      <widget class="QFrame" name="pulldownCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="pulldownCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="pulldownCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="pulldownCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Тяга верхнего блока</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="pulldownCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Спина · Тренажёр</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="dumbbellRowCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>627</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Тяга гантели в наклоне</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Спина</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Тяга гантели в наклоне Спина Гантель</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>true</bool>
+      </property>
+      <widget class="QFrame" name="dumbbellRowCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="dumbbellRowCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dumbbellRowCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="dumbbellRowCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Тяга гантели в наклоне</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="dumbbellRowCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Спина · Гантель</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="benchPressCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>747</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Жим штанги лёжа</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Грудь</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Жим штанги лёжа Грудь Штанга</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>false</bool>
+      </property>
+      <widget class="QFrame" name="benchPressCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="benchPressCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="benchPressCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="benchPressCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Жим штанги лёжа</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="benchPressCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Грудь · Штанга</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="pushupsCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>867</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Отжимания</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Грудь</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Отжимания Грудь Собственный вес</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>false</bool>
+      </property>
+      <widget class="QFrame" name="pushupsCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="pushupsCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="pushupsCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="pushupsCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Отжимания</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="pushupsCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Грудь · Собственный вес</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="squatsCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>987</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Приседания</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Ноги</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Приседания Ноги Собственный вес</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>false</bool>
+      </property>
+      <widget class="QFrame" name="squatsCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="squatsCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="squatsCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="squatsCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Приседания</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="squatsCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ноги · Собственный вес</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="legPressCard">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>1107</y>
+        <width>924</width>
+        <height>104</height>
+       </rect>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="exerciseName" stdset="0">
+       <string>Жим ногами</string>
+      </property>
+      <property name="category" stdset="0">
+       <string>Ноги</string>
+      </property>
+      <property name="keywords" stdset="0">
+       <string>Жим ногами Ноги Тренажёр</string>
+      </property>
+      <property name="featured" stdset="0">
+       <bool>false</bool>
+      </property>
+      <widget class="QFrame" name="legPressCardPhotoFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>104</width>
+         <height>104</height>
+        </rect>
+       </property>
+       <property name="thumbnail" stdset="0">
+        <bool>true</bool>
+       </property>
+       <widget class="QLabel" name="legPressCardPhotoIcon">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>20</y>
+          <width>82</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../assets/resources.qrc">:/icons/photo.svg</pixmap>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="legPressCardPhotoCaption">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>57</y>
+          <width>82</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Фото позже</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="photoCaption" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="legPressCardTitleLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>27</y>
+         <width>798</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Жим ногами</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseTitle" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="legPressCardMetaLabel">
+       <property name="geometry">
+        <rect>
+         <x>126</x>
+         <y>60</y>
+         <width>798</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ноги · Тренажёр</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="exerciseMeta" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="emptyStateLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>100</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>В этой категории пока нет упражнений.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="footerLabel">
+      <property name="geometry">
+       <rect>
+        <x>38</x>
+        <y>757</y>
+        <width>924</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Выбери категорию или найди упражнение по названию.</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>searchEdit</tabstop>
+  <tabstop>backButton</tabstop>
+  <tabstop>chestButton</tabstop>
+  <tabstop>legsButton</tabstop>
+  <tabstop>rehabButton</tabstop>
+  <tabstop>stretchButton</tabstop>
+  <tabstop>beginnerButton</tabstop>
+  <tabstop>allExercisesButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../assets/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

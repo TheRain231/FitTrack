@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<RCC>
+ <qresource prefix="/icons">
+  <file alias="search.svg">icons/search.svg</file>
+  <file alias="back.svg">icons/back.svg</file>
+  <file alias="chest.svg">icons/chest.svg</file>
+  <file alias="legs.svg">icons/legs.svg</file>
+  <file alias="rehab.svg">icons/rehab.svg</file>
+  <file alias="stretch.svg">icons/stretch.svg</file>
+  <file alias="beginner.svg">icons/beginner.svg</file>
+  <file alias="photo.svg">icons/photo.svg</file>
+ </qresource>
+</RCC>
